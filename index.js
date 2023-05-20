@@ -1,32 +1,31 @@
-// Define the Car constructor function
+// Define the Car class
 class Car {
- constructor(make, model, year) {
-    this.make = make;
-    this.model = model;
-    this.year = year;   
- }   
-}
-
-// Add getDecscription method
-Car.prototype.getDecription = function () {
-    return 'Make: ${this.make}, Model: ${this.model}, Year: ${this.year}';
-};
-
-//ElectricCar function as a subclass of Car
-class ElectricCar extends Car {
-    constructor(make, model, year,range) {
-        super(make, model, year)
-        this.range = range;
+    constructor(make, model, year) {
+      this.make = make;
+      this.model = model;
+      this.year = year;
     }
-}
-
-// Override the getDescription method for ElectricCar
-ElectricCar.prototype.getDescription = function () {
-    return `${Car.prototype.getDescription.call(this)}, Range: ${this.range} miles`;
-  };
-
-//Create an instance of ElectricCar 
-const electriCar = new ElectricCar("Tesla", "Model S", 2019, 300);
-
-//Call the outpu
-console.log(electriCar.getDecription());
+  
+    getDescription() {
+      return `Make: ${this.make}, Model: ${this.model}, Year: ${this.year}`;
+    }
+  }
+  
+  // Define the ElectricCar class as a subclass of Car
+  class ElectricCar extends Car {
+    constructor(make, model, year, range) {
+      super(make, model, year);
+      this.range = range;
+    }
+  
+    getDescription() {
+      return `${super.getDescription()}, Range: ${this.range} miles`;
+    }
+  }
+  
+  // Create an instance of ElectricCar
+  const electricCar = new ElectricCar("Tesla", "Model S", 2019, 300);
+  
+  // Call the output
+  console.log(electricCar.getDescription());
+  
